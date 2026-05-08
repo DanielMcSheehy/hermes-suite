@@ -10,7 +10,7 @@
 #   hermes-dashboard — Built-in monitoring dashboard on port 9119
 #   hermes-webui     — Browser chat interface on port 8787
 #
-# Build:  podman build -t hermes-suite:2026.4.30-0.51.18 .
+# Build:  podman build -t hermes-suite:2026.5.7-0.51.22 .
 # Run:    podman-compose up -d
 # =============================================================================
 
@@ -19,7 +19,7 @@
 # This already contains: Python 3.13, Node.js, npm, Playwright, agent code,
 # the built-in web dashboard (hermes dashboard), the gateway, uv, and gosu.
 # ---------------------------------------------------------------------------
-ARG AGENT_VERSION=v2026.4.30
+ARG AGENT_VERSION=v2026.5.7
 FROM docker.io/nousresearch/hermes-agent:${AGENT_VERSION}
 
 USER root
@@ -78,7 +78,7 @@ RUN mkdir -p /var/log/supervisor /var/run/supervisor && \
 #
 # PIN to a specific tag for reproducible builds — never use 'master'.
 # ---------------------------------------------------------------------------
-ARG HERMES_WEBUI_VERSION=v0.51.18
+ARG HERMES_WEBUI_VERSION=v0.51.22
 RUN cd /opt && \
     git clone --depth 1 --branch ${HERMES_WEBUI_VERSION} \
         https://github.com/nesquena/hermes-webui.git hermes-webui && \
@@ -101,8 +101,8 @@ RUN chmod +x /opt/hermes-suite/start.sh
 # Stage 8: Environment, labels, and runtime config
 # ---------------------------------------------------------------------------
 # Re-declare ARGs after FROM so they are available in LABEL
-ARG AGENT_VERSION=v2026.4.30
-ARG HERMES_WEBUI_VERSION=v0.51.18
+ARG AGENT_VERSION=v2026.5.7
+ARG HERMES_WEBUI_VERSION=v0.51.22
 
 LABEL org.opencontainers.image.title="Hermes Suite" \
       org.opencontainers.image.description="All-in-one: hermes-agent + hermes-webui + hermes-dashboard" \
