@@ -97,6 +97,26 @@ COPY supervisord.conf /etc/supervisor/supervisord.conf
 COPY start.sh /opt/hermes-suite/start.sh
 RUN chmod +x /opt/hermes-suite/start.sh
 
+
+RUN mkdir -p \
+      /opt/data \
+      /opt/data/webui \
+      /workspace \
+      /tmp \
+      /var/log/supervisor \
+      /var/run/supervisor \
+  && chown -R hermes:hermes \
+      /opt/data \
+      /workspace \
+      /var/log/supervisor \
+      /var/run/supervisor \
+  && chmod -R 775 \
+      /opt/data \
+      /workspace \
+      /var/log/supervisor \
+      /var/run/supervisor \
+  && chmod 1777 /tmp
+
 # ---------------------------------------------------------------------------
 # Stage 8: Environment, labels, and runtime config
 # ---------------------------------------------------------------------------
