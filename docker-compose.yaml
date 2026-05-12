@@ -17,7 +17,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: hermes-suite-coolify:latest
+    image: hermes-suite-coolify:1
     pull_policy: build
     restart: unless-stopped
 
