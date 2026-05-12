@@ -17,7 +17,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: ascensionoid/hermes-suite:2026.5.7-0.51.44
+    image: hermes-suite-coolify:latest
+    pull_policy: build
     restart: unless-stopped
 
     ports:
