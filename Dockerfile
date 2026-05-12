@@ -130,7 +130,27 @@ ENV HERMES_WEBUI_AGENT_DIR=/opt/hermes
 EXPOSE 8642 8787 9119
 
 # Workspace directory
-RUN mkdir -p /workspace
+# Runtime writable directories
+RUN mkdir -p \
+      /opt/data \
+      /opt/data/webui \
+      /workspace \
+      /var/log/supervisor \
+      /var/run/supervisor \
+      /opt/hermes-suite \
+  && chown -R hermes:hermes \
+      /opt/data \
+      /workspace \
+      /var/log/supervisor \
+      /var/run/supervisor \
+      /opt/hermes-suite \
+  && chmod -R u+rwX,g+rwX \
+      /opt/data \
+      /workspace \
+      /var/log/supervisor \
+      /var/run/supervisor \
+      /opt/hermes-suite \
+  && chmod 1777 /tmp
 
 WORKDIR /opt/hermes
 
